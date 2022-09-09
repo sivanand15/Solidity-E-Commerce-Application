@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    
+   
+
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script type="text/javascript">
+		var address = "0xf0937267ABd2c24E65010BCf34E5BA3B604bBD36";
+		var abi =[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_firstname",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_lastname",
+				"type": "string"
+			}
+		],
+		"name": "addperson",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_pid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_pName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_price",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_quantity",
+				"type": "string"
+			}
+		],
+		"name": "addproduct",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "price",
+				"type": "string"
+			}
+		],
+		"name": "changeprice",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "cid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "pid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "stat",
+				"type": "string"
+			}
+		],
+		"name": "foo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "orderProduct",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "i",
+				"type": "uint256"
+			}
+		],
+		"name": "availProducts",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "cid",
+				"type": "uint256"
+			}
+		],
+		"name": "fooview",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "order",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "oid",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id1",
+				"type": "uint256"
+			}
+		],
+		"name": "orderview",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pcount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "people",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_firstname",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_lastname",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "peoplecount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "prod",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_pid",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_pName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_price",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_quantity",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "st",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "cidstat",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "pidstat",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+var web3;
+		web3 = new Web3(web3.currentProvider);
+		contract = new web3.eth.Contract(abi, address);
+		$(document).ready(function(){
+					web3.eth.getAccounts().then(function(accounts){
+						alert(accounts[0])
+					})
+		})
+	</script>
+
+
+
+
+
+</head>
+<body>
+	<div class="row">
+   <div class="col">
+	   <div class="row">
+		   <div class="col">
+	<div class="leftside" style="height: 100vh;
+	width: 100%; background: rgb(236, 240, 188);">
+	<br>
+    <label for="name4" >Producer registration ("firstname")</label>
+    <input id="name4" type="text" style="border-style: solid; border-color: black; margin-left: 5px;">
+   <br>
+
+    <label for="name5" >Producer registration ("lastname")</label>
+    <input id="name5" type="text" style="border-style: solid; border-color: black; margin-left: 10px;">
+    <br><br>
+	<button id="button4">Submit</button>
+
+    
+ <br><br>
+
+    <label for="name6" >Product registration ID</label>
+    <input id="name6" type="number" style="border-style: solid; border-color: black; margin-left: 52px;"><br>
+    <label for="name7" >Product registration name</label>
+    <input id="name7" type="text" style="border-style: solid; border-color: black; margin-left: 35px;"><br>
+    <label for="name8" >Product registration price</label>
+    <input id="name8" type="number" style="border-style: solid; border-color: black; margin-left: 38px;"><br>
+    <label for="name9" >Product registration Quantity</label>
+    <input id="name9" type="number" style="border-style: solid; border-color: black; margin-left: 15px;"><br>
+    <button id="button5">Submit</button>
+    </div>
+
+</div>
+
+
+
+<div class="col">
+
+<div class="rightside" style="height: 100vh;width: 100% ;background: rgb(236, 240, 188);">
+    <br>
+
+<label for="name2" >OrderView</label>
+    <input id="name2"  type="text" style="border-style: solid; border-color: black;">
+    <button id="button2">Submit</button>
+    <br><br>
+
+
+
+   
+    <label for="name10" >CID number</label>
+    <input id="name10" type="number" style="border-style: solid; border-color: black;"><br>
+    <label for="name100" >PID number</label>
+    <input id="name100" type="number" style="border-style: solid; border-color: black;"><br>
+    <label for="name11" >Product Status</label>
+    <input id="name11" type="text" style="border-style: solid; border-color: black;"><br>
+    <button id="button6">Submit</button>
+    
+<br><br>
+    <label for="name13" >Enter Product ID to change price</label>
+    <input id="name13" type="number" style="border-style: solid; border-color: black;"><br><br>
+    <label for="name14" >Enter new price:</label>
+    <input id="name14" type="number" style="border-style: solid; border-color: black;"><br>
+    <button id="button8">Submit</button>
+    <br><br>
+	<p id="Order ID"></p>
+    <br>
+	
+</div>
+
+</div>
+</div>
+   </div>
+   <div class="col">
+<div class="rightside" style="height: 100vh;
+width: 100%; background: rgb(173, 228, 230);">
+<label for="name1" class="text">Products ID</label>
+    <input id="name1" type="text" style="border-style: solid; border-color: black; margin-left: 10px;">
+    <button id="button1">Submit</button>
+    <br>
+    <br>
+
+    
+
+    <label for="name3" >Order Here with Product ID</label>
+    <input id="name3" type="number" style="border-style: solid; border-color: black; margin-left: 10px;">
+    <button id="button3">Submit</button>
+    
+    <br><br>
+
+    
+
+    <br><br>
+    <label for="name12" > Check Product Status Enter ID:</label>
+    <input id="name12" type="number" style="border-style: solid; border-color: black;">
+    <button id="button7">Submit</button>
+    <br><br>
+	<p id="prods1"></p>
+    <br>
+    <p id="prods2"></p>
+    <br>
+    <p id="prods3"></p>
+    <br>
+    <p id="prods4"></p>
+    <br>
+   <br>
+	<p id="Status1"></p>
+    <br>
+    <p id="Status2"></p>
+    <br>
+    <p id="Status3"></p>
+</div>
+   
+    
+</div>
+</div>
+
+
+    <script>
+        $("#button1").click(function() {
+           
+    contract.methods.availProducts($("#name1").val()).call().then(function(data){
+       document.getElementById("prods1").innerHTML = "Product ID:" +data[0]; 
+       document.getElementById("prods2").innerHTML ="Product name:" +data[1];
+       document.getElementById("prods3").innerHTML ="Price:"+data[2];
+       document.getElementById("prods4").innerHTML ="Quantity:"+data[3];
+    });
+    });
+
+    $("#button2").click(function() {
+            
+    contract.methods.orderview($("#name2").val()).call().then(function(data){
+        document.getElementById("Order ID").innerHTML = "Customer ID:" +data[0]+"Product ID:"+data[1];
+    });
+    });
+
+    $("#button3").click(function() {
+           
+           contract.methods.orderProduct($("#name3").val()).send({from: '0x7824b0a7D439fE89E9ad7E26803666D94E453e13'});
+           });
+
+    $("#button4").click(function() {
+           
+           contract.methods.addperson($("#name4").val(),$("#name5").val()).send({from: '0x7824b0a7D439fE89E9ad7E26803666D94E453e13'});
+           });
+    
+    $("#button5").click(function() {
+           
+           contract.methods.addproduct($("#name6").val(),$("#name7").val(),$("#name8").val(),$("#name9").val()).send({from: '0x7824b0a7D439fE89E9ad7E26803666D94E453e13'});
+           });   
+
+    $("#button6").click(function() {
+           
+           contract.methods.foo($("#name10").val(),$("#name100").val(),$("#name11").val()).send({from: '0x7824b0a7D439fE89E9ad7E26803666D94E453e13'});
+           });   
+
+    $("#button7").click(function() {
+           
+        contract.methods.fooview($("#name12").val()).call().then(function(data){
+        document.getElementById("Status1").innerHTML = "CID: " +data[0];
+        document.getElementById("Status2").innerHTML = "PID " +data[1];
+        document.getElementById("Status3").innerHTML = "Product Status: " +data[2];
+    });
+           });  
+	$("#button8").click(function() {
+           
+           contract.methods.changeprice($("#name13").val(),$("#name14").val()).send({from: '0x7824b0a7D439fE89E9ad7E26803666D94E453e13'});
+           }); 
+    
+</script>
+</body>
+</html>
